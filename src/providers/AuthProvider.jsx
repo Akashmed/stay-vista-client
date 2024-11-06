@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
+import { removeCookie } from '../api/auth'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -41,9 +42,10 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email)
   }
 
-  const logOut = () => {
-    setLoading(true)
-    return signOut(auth)
+  const logOut = async () => {
+    setLoading(true);
+    await removeCookie();
+    return signOut(auth);
   }
 
   const updateUserProfile = (name, photo) => {

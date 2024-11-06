@@ -3,10 +3,10 @@ import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import qs from "query-string"
 
-const CategoryBox = ({ label, icon: Icon,selected }) => {
-console.log(selected)
-  const [params, useParams] = useSearchParams()
+const CategoryBox = ({ label, icon: Icon, selected }) => {
+  const [params, setParams] = useSearchParams()
   const navigate = useNavigate()
+  
   const handleClick = () => {
     let currentQuery = {}
     if (params) {
